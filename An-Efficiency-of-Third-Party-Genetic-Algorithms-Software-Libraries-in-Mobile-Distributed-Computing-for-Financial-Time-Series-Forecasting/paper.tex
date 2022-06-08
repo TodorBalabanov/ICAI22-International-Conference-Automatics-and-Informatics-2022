@@ -67,15 +67,33 @@ In this study, a mobile distributed computing software \cite{Balabanov-2022-a} h
 
 The paper is organized as follows: Section 2 introduces mobile distributed computing and its specifics; Section 2 presents financial time series forecasting and some of the related challenges; Section 3 reveals some experiments and results; Section 4 concludes and provides some guidance for further research.
 
-\section{Mobile Distributed Computing}
+\section{Distributed Computing}
 
-Only a limited number of computational problems are proper for distributed computing. The main condition for this suitability is the presence of calculating instructions that can be performed simultaneously \cite{Hillis-1986-a}. When it comes to computers in a global network, it is useful for the synchronization of the results to be done less frequently than in parallel computing. For example, the parallel implementation of the QuickSort \cite{Sanders-1997-a} algorithm is not proper as distributed computing implementation. 
+Only a limited number of computational problems are proper for distributed computing. The main condition for this suitability is the presence of calculating instructions that can be performed simultaneously \cite{Hillis-1986-a}. When it comes to computers in a global network, it is useful for the synchronization of the results to be done less frequently than in parallel computing. 
+
+For example, the parallel implementation of the QuickSort \cite{Sanders-1997-a} algorithm is not proper as distributed computing implementation. Partially sorted sub-arrays need strong synchronization during the parallelization process. In distributed computing, it is very common for some calculating nodes to disappear from the network without any warning. If such an event happens during a parallel run of QuickSort the whole calculation would fail. Because of these reasons, algorithms like QuickSort are proper for multiprocessor machines with common memory but are not proper for distributed computing. 
+
+On the other side, evolutionary algorithms \cite{Sudholt-2015-a} have a very high degree of parallelism. Intermediate calculations in evolutionary algorithms are mainly useless. Losing some intermediate results does not affect too much the final outcome. In distributed computing implementation of some evolutionary algorithms, there is a very low need for synchronization. All described making evolutionary algorithms a perfect option for doing distributed computing. 
+
+In most cases, evolutionary algorithms themselves are very fast performing \cite{Vural-2012-a}. The low performance comes when the target function (fitness value calculation) is computationally time-consuming \cite{Di-Pietro-2004-a}. For their effectiveness, most of the evolutionary algorithms do perform a lot of calculations of the target function  \cite{Shi-2010-a}. It is needed because many different candidate solutions should be checked or involved in the optimization process. When both factors come together, too many calculations of a very time-consuming target function, the optimization becomes practically unusable \cite{Lee-2015-a}. 
+
+All mentioned above lead to the logical conclusion that distributed computing perfectly fits the needs of low-performing evolutionary algorithms. A global population of solutions is handled on a very low resource usage remote server \cite{Gong-2015-a}. The server does mainly storage and less frequent synchronization with the calculating nodes. Because calculating nodes are highly independent, a local evolution of the solutions can be done for a long period of time without the need for synchronization. 
 
 \section{Time Series Forecasting}
+
+Vitosha Trade Android Client \cite{Balabanov-2022-a} is a mobile distributed computing application. It uses the capabilities of the Android OS as visualization and background calculations. The application is partially under development in the Institute of Information and Communication Technologies as part of the Bulgarian Academy of Sciences. The main goal of the project is financial time series forecasting \cite{Kolarik-1994-a}. It is achieved by gradient-based methods for artificial neural networks training \cite{Tomov-2021-a} and evolutionary algorithms \cite{Tomov-2021-b}. Android services are used as tools for doing calculations in the background. Visualization of the intermediate results is done with Android live wallpaper capabilities \cite{Mateeva-2021-a}. 
+
+Mobile distributed computing in this project is organized as client-server \cite{Sinha-1992-a} software architecture. Time series are provided from a light-weighted remote web server. A global population of solutions is also available through the same server. Mobile devices connect to the server, as RESTful communication \cite{Orellana-2012-a}, and through HTTP/JSON protocol request calculating packages. 
+
+Global population and local populations are subsets of artificial neural networks weights matrices. Local populations are handled by different evolutionary algorithms, in some cases genetic algorithms. Individuals of the local populations are loaded in an artificial neural network structure when the fitness value is calculated. Such calculation is very time-consuming because the artificial neural network performs all input-output examples and the root mean square error is calculated. 
 
 \section{Experiments \& Results}
 
 \section{Conclusion}
+
+In this study, the efficiency of the MOEA Framework and Jenetics framework were compared, when they are used for genetic algorithms optimization in financial time series forecasting. As a result of the experiments done, MOEA performs much faster than Jenetics. The too complicated object-oriented implementation of Jenetics makes it extremely difficult to use. The objects in Jenetics are immutable which gives good thread safety but dramatically affects its performance. Both libraries are written in Java, but code compliance with Android can be challenging. 
+
+In further research, other software libraries can be investigated and compared with those already included in the project.
 
 \section*{Acknowledgment}
 
