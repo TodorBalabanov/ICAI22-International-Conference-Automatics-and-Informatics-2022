@@ -87,7 +87,20 @@ Mobile distributed computing in this project is organized as client-server \cite
 
 Global population and local populations are subsets of artificial neural networks weights matrices. Local populations are handled by different evolutionary algorithms, in some cases genetic algorithms. Individuals of the local populations are loaded in an artificial neural network structure when the fitness value is calculated. Such calculation is very time-consuming because the artificial neural network performs all input-output examples and the root mean square error is calculated. 
 
+In addition to the artificial neural networks, a second approach for financial time series forecasting is also used. It is based on sine series curve fitting \cite{Iliev-2021-a}. The trend of the financial time series is approximated with an equation of a line. The sum of the sine functions approximates the fluctuations in the financial times series. A genetic algorithm is applied to search for near-optimal solutions of the coefficients used for the line equation the sine functions. Chromosomes consist of two coefficients for the line function and three coefficients for each sine function. The goal of the optimization is for the resulting curve to be as close to the original points as possible. 
+
 \section{Experiments \& Results}
+
+Experiments have been done with both frameworks for doing nonlinear curve fitting with a single line and a sum of nine sine functions. The price of Bitcoin in US dollars is taken as experimental data (Fig. \ref{fig01}).
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=8.4cm]{fig01.png}}
+\caption{Bitcoin price.}
+\label{fig01}
+\end{figure}
+
+All calculations have been done on Intel Core i5 2.3GHz, a single CPU with 2 cores, 8GB RAM, macOS High Sierra 10.13.6, Java SE
+11.0.2, MOEA Framework 2.13, and Jenetics 7.0.0. 
 
 \section{Conclusion}
 
