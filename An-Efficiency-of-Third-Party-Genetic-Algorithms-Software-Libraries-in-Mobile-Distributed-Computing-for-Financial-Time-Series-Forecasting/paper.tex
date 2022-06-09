@@ -15,7 +15,7 @@
 
 \title{An Efficiency of Third Party Genetic Algorithms Software Libraries in Mobile Distributed Computing for Financial Time Series Forecasting\\
 {\footnotesize \textsuperscript{}}
-\thanks{This research is funded by Velbazhd Software LLC. It is partially supported by the Ministry of Education and Science of the Republic Bulgaria under the National Science Program “Intelligentanimal husbandry”, grant agreement No. D01-62/18.03.2021/, the National Research Programme “Young scientists and postdoctoral students” approved by DCM No. 577/17.08.2018, and the Bulgarian National Science Fund by the project “Mathematical models, methods and algorithms for solving hard optimization problems to achieve high security in communications and better economic sustainability”, KP-06-N52/7/19-11-2021.}
+\thanks{This research is funded by Velbazhd Software LLC.}
 }
 
 \author{\IEEEauthorblockN{1\textsuperscript{st} Gergana Mateeva}
@@ -100,7 +100,33 @@ Experiments have been done with both frameworks for doing nonlinear curve fittin
 \end{figure}
 
 All calculations have been done on Intel Core i5 2.3GHz, a single CPU with 2 cores, 8GB RAM, macOS High Sierra 10.13.6, Java SE
-11.0.2, MOEA Framework 2.13, and Jenetics 7.0.0. 
+11.0.2, MOEA Framework 2.13, and Jenetics 7.0.0. The population of the genetic algorithms was selected to be 137 individuals. Tournament selection with an elitism rule has been used. A crossover rate of 95\% and a mutation rate of 1\% were preferred. Evolution time was selected to be 60 seconds with measurements of the progress on each second. 
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=8.4cm]{fig02.png}}
+\caption{MOEA Framework convergence.}
+\label{fig02}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=8.4cm]{fig03.png}}
+\caption{Jenetics convergence.}
+\label{fig03}
+\end{figure}
+
+As convergence, the lower point was achieved by MOEA Framework (Fig. \ref{fig02}), where Jenetics convergence is less smooth (Fig. \ref{fig03}), showing clearly that the process is less stable. MOEA Framework was able to make almost twice more target function (Fig. \ref{fig04}) calculations than Jenetics (Fig. \ref{fig05}). In a general conclusion, MOEA Framework is much easier to use, has more stable convergence and performance is much better.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=8.4cm]{fig04.png}}
+\caption{MOEA Framework number of target function calculations.}
+\label{fig04}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=8.4cm]{fig05.png}}
+\caption{Jenetics number of target function calculations.}
+\label{fig05}
+\end{figure}
 
 \section{Conclusion}
 
